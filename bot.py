@@ -1,8 +1,8 @@
 # Import necessary libraries
 import os
 import openai
-from telegram import Update, Bot
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackContext
+from telegram import Update
 
 # Load environment variables
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
@@ -71,19 +71,17 @@ def main():
     if not TELEGRAM_TOKEN:
         raise ValueError("Error: TELEGRAM_TOKEN environment variable is not set.")
 
-    # Initialize the bot and updater
-    bot = Bot(token=TELEGRAM_TOKEN)
-    updater = Updater(bot=bot, use_context=True)
-    dispatcher = updater.dispatcher
+    # Build the application
+    app = ApplicationBuilder().token(TELEGRAM_TOKEN).build()
 
     # Add command handlers
-    dispatcher.add_handler(CommandHandler("хоку", haiku_command))
-    dispatcher.add_handler(CommandHandler("help", help_command))
-    dispatcher.add_handler(CommandHandler("ping", ping_command))
+    app.add_handler(CommandHandler("хоку", haiku_command))
+    app.add_handler(CommandHandler("help", help_command))
+    app.add_handler(CommandHandler("ping", ping_command))
 
-    # Start the bot
-    updater.start_polling()
-    updater.idle()
+    # Start polling
+    print("Bot is running...")
+    app.run_polling()
 
 # Entry point
 if __name__ == "__main__":
