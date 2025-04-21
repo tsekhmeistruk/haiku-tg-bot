@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the bot script into the container
 COPY bot.py .
 COPY haiku_examples.txt .
+COPY les_podervianskyi_quotes.txt .
 
 # Command to run the bot
 CMD ["python", "bot.py"]
