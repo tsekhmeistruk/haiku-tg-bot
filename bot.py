@@ -117,7 +117,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     keyboard = [
-        [InlineKeyboardButton("🍾 Хайку", callback_data="haiku")],
+        [InlineKeyboardButton("🍾 Хоку", callback_data="haiku")],
         [InlineKeyboardButton("🚬 Настрій", callback_data="mood")],
         [InlineKeyboardButton("🥷 Дуель", callback_data="battle")],
         [InlineKeyboardButton("🩸 Лесь П.", callback_data="les")]
